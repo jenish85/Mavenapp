@@ -1,0 +1,48 @@
+#!/usr/bin/env groovy
+pipeline {
+    agent any
+    stages {
+        stage('validate Maven Project') {
+            steps {
+                script {
+                    bat 'mvn validate'
+                }
+            }
+        }
+        stage('Compile Maven Project') {
+            steps {
+                script {
+                    bat 'mvn compile'
+                }
+            }
+        }
+        stage('Test Maven Project') {
+            steps {
+                script {
+                    bat 'mvn test'
+                }
+            }
+        }
+        stage('Package Maven Project') {
+            steps {
+                script {
+                    bat 'mvn package'
+                }
+            }
+        }
+        stage('Installation in Local') {
+            steps {
+                script {
+                    bat 'mvn install'
+                }
+            }
+        }
+        stage('Deployment') {
+            steps {
+                script {
+                    bat 'mvn deploy'
+                }
+            }
+        }
+    }
+}
